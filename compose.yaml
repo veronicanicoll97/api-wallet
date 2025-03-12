@@ -1,0 +1,6 @@
+﻿services:
+  wallet:
+    image: wallet
+    build:
+      context: .
+      dockerfile: Wallet/Dockerfile
