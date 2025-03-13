@@ -18,8 +18,19 @@ public class WalletController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAllWallets()
     {
-        var users = await _walletService.GetAllWalletsAsync();
-        return Ok(users);
+        var wallets = await _walletService.GetAllWalletsAsync();
+        return Ok(wallets);
+    }
+
+    [HttpGet("{id:int}")]
+    public async Task<IActionResult> GetAllWalletById(int id)
+    {
+        var wallet = await _walletService.GetWalletByIdAsync(id);
+        if (wallet == null)
+        {
+            return NotFound(new { message = "Wallet not found" });
+        }
+        return Ok(wallet);
     }
 
     [HttpPost]

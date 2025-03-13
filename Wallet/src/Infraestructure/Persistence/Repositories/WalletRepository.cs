@@ -24,7 +24,7 @@ public class WalletRepository : IWalletRepository
     {
         using var connection = _databaseConnection.CreateConnection();
         return await connection.QueryFirstOrDefaultAsync<Domain.Entities.Wallet>(
-            "SELECT id, \"name\", \"documentId\", balance, \"createdAt\", \"updatedAt\" FROM wallets WHERE Id = @Id", new { Id = id });
+            "SELECT id, \"name\", \"documentId\", balance, \"createdAt\", \"updatedAt\" FROM wallets WHERE id = @id", new {  id });
     }
 
     public async Task AddAsync(Domain.Entities.Wallet wallet)
