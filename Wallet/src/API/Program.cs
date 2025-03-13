@@ -3,9 +3,12 @@ using Wallet.Domain.Repositories;
 using Wallet.Infraestructure.Persistence.Config;
 using Wallet.Infraestructure.Persistence.Repositories;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration
+    .SetBasePath(Path.Combine(Directory.GetCurrentDirectory(), "src", "API")) // Asegura que busca en el directorio correcto
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true) // Carga el archivo
+    .AddEnvironmentVariables();
 // Configurar conexión a BD
 builder.Services.AddSingleton<DatabaseConnection>();
 
